@@ -1,0 +1,521 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Software und KI – verständlich, praxisnah und mit Haltung." />
+  <title>Software & KI | Persönliche Website</title>
+  <style>
+    :root {
+      --bg: #fbfaf7;
+      --ink: #102630;
+      --muted: #627178;
+      --teal: #08777a;
+      --teal-dark: #075c60;
+      --line: #e4e9e6;
+      --soft: #eff5f1;
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(1160px, calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(251, 250, 247, .94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+
+    nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      color: var(--teal);
+      font-family: monospace;
+      font-size: 25px;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 23px;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover { color: var(--teal); }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 20px;
+      border: 1px solid var(--teal);
+      border-radius: 10px;
+      background: var(--teal);
+      color: white;
+      font: inherit;
+      transition: background .2s, transform .2s;
+    }
+
+    .button:hover {
+      background: var(--teal-dark);
+      transform: translateY(-1px);
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--ink);
+      border-color: #8c999a;
+    }
+
+    .button.secondary:hover {
+      background: var(--soft);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 55px;
+      align-items: center;
+      padding-block: 70px 52px;
+    }
+
+    .eyebrow {
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 700px;
+      margin: 18px 0;
+      font-size: clamp(38px, 5vw, 62px);
+      font-weight: 500;
+      letter-spacing: -.045em;
+      line-height: 1.12;
+    }
+
+    h2 {
+      margin: 8px 0 14px;
+      font-size: clamp(28px, 3.5vw, 40px);
+      font-weight: 500;
+      letter-spacing: -.035em;
+      line-height: 1.2;
+    }
+
+    h3 { font-size: 18px; font-weight: 600; }
+
+    p { color: var(--muted); }
+
+    .hero-copy > p {
+      max-width: 600px;
+      font-size: 17px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .portrait {
+      height: 420px;
+      overflow: hidden;
+      border-radius: 40% 28% 32% 25%;
+      background: #e6ece5;
+    }
+
+    .portrait img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .portrait span {
+      display: block;
+      font-size: 64px;
+      margin-bottom: 12px;
+    }
+
+    .portrait small { color: #4f6e6c; }
+
+    .topics {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      border-block: 1px solid var(--line);
+      padding-block: 24px;
+      margin-bottom: 52px;
+    }
+
+    .topic {
+      padding: 10px 20px;
+      border-right: 1px solid var(--line);
+    }
+
+    .topic:first-child { padding-left: 0; }
+    .topic:last-child { border: 0; }
+
+    .topic strong { display: block; font-size: 15px; }
+    .topic p { margin-bottom: 0; font-size: 13px; }
+
+    section { scroll-margin-top: 100px; }
+
+    .feature {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 40px;
+      align-items: center;
+      padding: 38px;
+      border-radius: var(--radius);
+      background: var(--soft);
+      margin-bottom: 76px;
+    }
+
+    .feature h2 { margin-top: 10px; }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .feature-list li {
+      position: relative;
+      padding: 0 0 20px 32px;
+    }
+
+    .feature-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 1px;
+      display: grid;
+      place-items: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #75bdb1;
+      color: white;
+      font-size: 13px;
+    }
+
+    .feature-list strong { display: block; }
+    .feature-list span { color: var(--muted); font-size: 14px; }
+
+    .section {
+      padding-block: 45px 65px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-intro { max-width: 650px; margin-bottom: 30px; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255,255,255,.45);
+    }
+
+    .card .number {
+      color: var(--teal);
+      font-family: monospace;
+      font-size: 13px;
+    }
+
+    .card h3 { margin-bottom: 8px; }
+    .card p { font-size: 14px; }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    .tag {
+      padding: 9px 13px;
+      border: 1px solid var(--line);
+      border-radius: 99px;
+      font-size: 14px;
+      background: white;
+    }
+
+    .timeline {
+      border-left: 2px solid #c9ddd5;
+      margin-left: 8px;
+      padding-left: 25px;
+    }
+
+    .timeline article { position: relative; margin-bottom: 28px; }
+    .timeline article::before {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      left: -31px;
+      top: 7px;
+      border-radius: 50%;
+      background: var(--teal);
+    }
+
+    .timeline strong { display: block; }
+    .timeline p { margin-top: 5px; }
+
+    .contact {
+      margin-block: 70px;
+      padding: 42px;
+      border-radius: var(--radius);
+      background: #12373d;
+      color: white;
+    }
+
+    .contact h2 { max-width: 650px; }
+    .contact p { color: #d0e0df; }
+    .contact .button { background: white; color: var(--ink); border-color: white; }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding-block: 24px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: transparent;
+      padding: 8px 12px;
+      font: inherit;
+    }
+
+    @media (max-width: 850px) {
+      .nav-links { gap: 12px; }
+      .nav-contact { display: none; }
+      .hero { grid-template-columns: 1fr; gap: 30px; }
+      .portrait { min-height: 250px; }
+      .topics { grid-template-columns: repeat(2, 1fr); }
+      .topic { border-right: 0; padding: 15px; }
+      .feature { grid-template-columns: 1fr; padding: 26px; }
+      .cards { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .menu-toggle { display: block; }
+      nav { flex-wrap: wrap; padding-block: 12px; }
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        padding: 12px 0;
+      }
+      .nav-links.open { display: flex; }
+      .hero { padding-top: 42px; }
+      .topics { grid-template-columns: 1fr 1fr; }
+      .cards { grid-template-columns: 1fr; }
+      .contact { padding: 28px; }
+      footer { flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav class="container" aria-label="Hauptnavigation">
+    <a class="logo" href="#start" aria-label="Zur Startseite">{/**/}</a>
+    <button class="menu-toggle" id="menuToggle"
+            aria-expanded="false" aria-controls="navLinks">Menü ☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#tech">Tech Stack</a>
+      <a href="#talks">Talks</a>
+      <a href="#publikationen">Veröffentlichungen</a>
+      <a href="#seepferdchen">Seepferdchen KI</a>
+      <a href="#engagement">Engagement</a>
+    </div>
+    <a class="button nav-contact" href="#kontakt">Kontakt aufnehmen</a>
+  </nav>
+</header>
+
+<main>
+  <div class="container" id="start">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow">Software · KI · Wissensvermittlung</div>
+        <h1>Software und KI – verständlich, praxisnah und mit Haltung.</h1>
+        <p>Ich baue Software, teile Wissen und unterstütze Menschen und Organisationen dabei, KI-Kompetenz verständlich und alltagsnah zu vermitteln – von der Entwicklung bis zur Bildung.</p>
+<!--        <div class="actions">-->
+<!--          <a class="button" href="#tech">Meine Themen entdecken →</a>-->
+<!--          <a class="button secondary" href="#kontakt">✉ Über KI-Beratung sprechen</a>-->
+<!--        </div>-->
+      </div>
+      <div class="portrait">
+        <img src="assets/portrait.jpg" alt="Portrait von mir."/>
+      </div>
+    </section>
+
+    <div class="topics" aria-label="Themenschwerpunkte">
+      <div class="topic"><strong>〈 / 〉 Software Engineering</strong><p>Java, Spring Boot, saubere Architektur</p></div>
+      <div class="topic"><strong>☁ Cloud Native</strong><p>Docker, Kubernetes, CI/CD</p></div>
+      <div class="topic"><strong>✳ Künstliche Intelligenz</strong><p>Praxisnah, verständlich, mit Mehrwert</p></div>
+      <div class="topic"><strong>▤ Talks & Veröffentlichungen</strong><p>Wissen teilen, Ideen weitergeben</p></div>
+      <div class="topic"><strong>♡ Tech Education</strong><p>Engagement für eine vielfältige Tech-Welt</p></div>
+    </div>
+
+    <section class="feature" id="seepferdchen">
+      <div>
+        <div class="eyebrow">Aktuell im Fokus</div>
+        <h2>Das KI-Seepferdchen</h2>
+        <p>Du möchtest KI-Kompetenz vermitteln, Lernmaterialien vorbereiten oder Unterstützung bei der Vorbereitung und Durchführung des KI-Seepferdchens erhalten? Ich berate dich mit Erfahrung, Struktur und praxisnahen Materialien.</p>
+        <a class="button" href="#kontakt">Mehr über das KI-Seepferdchen →</a>
+      </div>
+      <ul class="feature-list">
+        <li><strong>Materialien vorbereiten</strong><span>Lerninhalte verständlich und zielgruppengerecht gestalten.</span></li>
+        <li><strong>Auf das KI-Seepferdchen vorbereiten</strong><span>Strukturierte Konzepte und praxisnahe Übungen entwickeln.</span></li>
+        <li><strong>Durchführung begleiten</strong><span>Bei Organisation, Ablauf und fachlicher Umsetzung unterstützen.</span></li>
+      </ul>
+    </section>
+
+    <section class="section" id="about">
+      <div class="section-intro">
+        <div class="eyebrow">About</div>
+        <h2>Technik ist für mich mehr als Code.</h2>
+        <p>Ich verbinde technische Neugier mit der Freude daran, Wissen zu teilen. Hier entsteht eine persönliche Vorstellung mit deinem Hintergrund, deinen Werten und deinem Weg in der Tech-Welt.</p>
+      </div>
+      <div class="timeline">
+        <article><strong>Mein Weg in die Tech-Welt</strong><p>Ergänze hier deine erste wichtige berufliche oder fachliche Station.</p></article>
+        <article><strong>Software & Cloud Native</strong><p>Beschreibe hier deine Erfahrungen mit Entwicklung, Architektur und Infrastruktur.</p></article>
+        <article><strong>KI und Wissensvermittlung</strong><p>Ergänze, wie du dich mit KI beschäftigst und dein Wissen weitergibst.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="tech">
+      <div class="section-intro">
+        <div class="eyebrow">Tech Stack</div>
+        <h2>Solide Technik. Verständlich umgesetzt.</h2>
+        <p>Technologien und Arbeitsweisen, mit denen ich mich beschäftige.</p>
+      </div>
+      <div class="tags">
+        <span class="tag">Java</span><span class="tag">Spring Boot</span>
+        <span class="tag">REST APIs</span><span class="tag">Docker</span>
+        <span class="tag">Kubernetes</span><span class="tag">CI/CD</span>
+        <span class="tag">Python</span><span class="tag">Git</span>
+        <span class="tag">Softwarearchitektur</span><span class="tag">Testing</span>
+        <span class="tag">Generative KI</span><span class="tag">KI-Kompetenz</span>
+      </div>
+    </section>
+
+    <section class="section" id="talks">
+      <div class="section-intro">
+        <div class="eyebrow">Talks</div>
+        <h2>Wissen auf die Bühne bringen.</h2>
+        <p>Vorträge, Workshops und Gespräche über Technologie, KI und die Menschen dahinter.</p>
+      </div>
+      <div class="cards">
+        <article class="card"><span class="number">01 / TALK</span><h3>Technologie verständlich machen</h3><p>Hier Talk-Titel, Veranstaltung, Datum und Link ergänzen.</p></article>
+        <article class="card"><span class="number">02 / WORKSHOP</span><h3>KI praktisch vermitteln</h3><p>Hier Workshop-Beschreibung und Zielgruppe ergänzen.</p></article>
+        <article class="card"><span class="number">03 / AUSTAUSCH</span><h3>Gemeinsam lernen</h3><p>Hier weitere Veranstaltungen oder Aufzeichnungen ergänzen.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="publikationen">
+      <div class="section-intro">
+        <div class="eyebrow">Veröffentlichungen</div>
+        <h2>Gedanken, die weiterwirken.</h2>
+        <p>Artikel, Interviews, Podcasts und weitere Veröffentlichungen.</p>
+      </div>
+      <div class="cards">
+        <article class="card"><span class="number">ARTIKEL</span><h3>Dein nächster Beitrag</h3><p>Ergänze Titel, Medium, Veröffentlichungsdatum und Link zur Originalquelle.</p></article>
+        <article class="card"><span class="number">INTERVIEW</span><h3>Im Gespräch</h3><p>Hier können Interviews oder Podcast-Auftritte vorgestellt werden.</p></article>
+        <article class="card"><span class="number">WEITERE BEITRÄGE</span><h3>Aus der Praxis</h3><p>Ergänze weitere fachliche Veröffentlichungen.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="engagement">
+      <div class="section-intro">
+        <div class="eyebrow">Engagement</div>
+        <h2>Mehr Menschen für Tech begeistern.</h2>
+        <p>Ich interessiere mich dafür, Wissen zugänglich zu machen, Perspektiven zu öffnen und eine vielfältige Tech-Welt mitzugestalten.</p>
+      </div>
+      <div class="cards">
+        <article class="card"><span class="number">BILDUNG</span><h3>Hacker School</h3><p>Ergänze deine konkrete Rolle und die Aktivitäten, mit denen du Menschen für Programmierung begeisterst.</p></article>
+        <article class="card"><span class="number">COMMUNITY</span><h3>Women in Tech e. V.</h3><p>Ergänze deine Beteiligung und was dir an Vielfalt und Chancengerechtigkeit wichtig ist.</p></article>
+        <article class="card"><span class="number">AUSTAUSCH</span><h3>Wissen teilen</h3><p>Weitere Initiativen, Mentoring oder Community-Aktivitäten ergänzen.</p></article>
+      </div>
+    </section>
+
+    <section class="contact" id="kontakt">
+      <div class="eyebrow">Kontakt</div>
+      <h2>Lass uns ins Gespräch kommen.</h2>
+      <p>Du planst einen Talk, möchtest Materialien zum KI-Seepferdchen vorbereiten oder suchst fachlichen Austausch? Ich freue mich auf deine Nachricht.</p>
+      <!-- TODO: E-Mail-Adresse durch deine echte Adresse ersetzen -->
+      <a class="button" href="mailto:DEINE-EMAIL@example.com?subject=Anfrage%20zur%20KI-Beratung">Kontakt aufnehmen ↗</a>
+    </section>
+  </div>
+</main>
+
+<footer class="container">
+  <span>© <span id="year"></span> · Software, Cloud & KI</span>
+  <span><a href="/impressum">Impressum</a> · <a href="/datenschutz">Datenschutz</a></span>
+</footer>
+
+<script>
+  const menuToggle = document.getElementById("menuToggle");
+  const navLinks = document.getElementById("navLinks");
+
+  menuToggle.addEventListener("click", () => {
+    const isOpen = navLinks.classList.toggle("open");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  navLinks.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("open");
+      menuToggle.setAttribute("aria-expanded", "false");
+    });
+  });
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
