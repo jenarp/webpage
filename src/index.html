@@ -55,10 +55,56 @@
     }
 
     .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--ink);
+    }
+
+    .logo-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      background: var(--teal);
+      color: #fff;
+      border-radius: 10px;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .logo:hover .logo-icon {
+      background: var(--teal-dark);
+      transform: translateY(-1px);
+    }
+
+    .logo-name {
+      font-family: inherit;
+      font-size: 21px;
+      font-weight: 350;
+      letter-spacing: -0.5px;
+      white-space: nowrap;
       color: var(--teal);
-      font-family: monospace;
-      font-size: 25px;
-      font-weight: 700;
+    }
+
+    .logo:focus-visible {
+      outline: 2px solid var(--teal);
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
+
+    @media (max-width: 600px) {
+      .logo-icon {
+        width: 36px;
+        height: 36px;
+      }
+
+      .logo-icon svg {
+        width: 21px;
+        height: 21px;
+      }
+
     }
 
     .nav-links {
@@ -362,7 +408,25 @@
 <body>
 <header>
   <nav class="container" aria-label="Hauptnavigation">
-    <a class="logo" href="#start" aria-label="Zur Startseite">{/**/}</a>
+    <a class="logo" href="#start" aria-label="Startseite">
+        <span class="logo-icon" aria-hidden="true">
+    <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+    >
+      <polyline points="8 17 3 12 8 7"></polyline>
+      <polyline points="16 7 21 12 16 17"></polyline>
+      <line x1="14" y1="4" x2="10" y2="20"></line>
+    </svg>
+  </span>
+      <span class="logo-name">Dr. rer. nat. Jennifer Sünder</span></a>
     <button class="menu-toggle" id="menuToggle"
             aria-expanded="false" aria-controls="navLinks">Menü ☰</button>
     <div class="nav-links" id="navLinks">
