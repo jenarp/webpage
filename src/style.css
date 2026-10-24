@@ -236,10 +236,6 @@
         border-right: 1px solid var(--line);
     }
 
-    .topic:first-child {
-        padding-left: 0;
-    }
-
     .topic:last-child {
         border: 0;
     }
